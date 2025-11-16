@@ -2,11 +2,11 @@
 
 const cacheName = 'v1';
 const cachedFiles = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/script.js',
-  '/images/logo.png'
+  '',
+  'index.html',
+  'style.css',
+  'script.js',
+  'images/logo.png'
 ];
 
 // Install event - Cache files
