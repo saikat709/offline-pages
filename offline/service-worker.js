@@ -9,6 +9,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+  console.log("Event triggered: ", event);
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(OFFLINE_URL))
