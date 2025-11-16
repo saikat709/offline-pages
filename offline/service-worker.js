@@ -1,22 +1,16 @@
 const CACHE_NAME = 'offline-cache-v1';
-const OFFLINE_URL = './index.html';
+const OFFLINE_URL = '/offline/page.html';
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll([OFFLINE_URL]);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll([OFFLINE_URL]))
   );
 });
 
 self.addEventListener('fetch', event => {
-  console.log("Fetch event for ", event.request.url);
-  if (!navigator.onLine) {
-    console.log("Cache fetch event: ", event.response);
+  if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match(event.request).then(response => {
-        return response || caches.match(OFFLINE_URL);
-      })
+      fetch(event.request).catch(() => caches.match(OFFLINE_URL))
     );
   }
 });
