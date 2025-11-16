@@ -2,7 +2,6 @@
 
 const cacheName = 'v1';
 const cachedFiles = [
-  '',
   'index.html',
   'style.css',
   'script.js',
@@ -39,6 +38,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
+      console.log("Fetching:", event.request.url, "Response:", response);
       return response || fetch(event.request);
     })
   );
