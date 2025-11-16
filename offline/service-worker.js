@@ -1,5 +1,5 @@
 const CACHE_NAME = 'offline-cache-v1';
-const OFFLINE_URL = './offline/page.html';
+const OFFLINE_URL = 'page.html';
 
 self.addEventListener('install', event => {
   console.log('Full path used by service worker:', new URL(OFFLINE_URL, self.location).href);
