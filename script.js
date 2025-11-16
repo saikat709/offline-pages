@@ -1,13 +1,16 @@
-window.onload = () => {
+window.addEventListener('load', () => {
 
-    console.log("Onload called");
+    if ( !navigator.onLine ){
+        document.body.style.backgroundColor = 'lightgray';
+        document.getElementById('status').textContent = 'You are currently offline.';
+    }
 
     if ('serviceWorker' in navigator) {
-        console.log("Setting up service worker.");
-        navigator.serviceWorker.register('./offline/service-worker.js')
-            .then(reg => console.log('Service Worker registered'))
-            .catch(err => console.log('Service worker registration failed:', err));
-    } else {
-        console.log("serviceWorker not found for this browser.");
+        navigator.serviceWorker.register('sw.js');
     }
-};
+    const statusElement = document.getElementById('status');
+    function updateOnlineStatus() {
+        statusElement.textContent = navigator.onLine ? 'Online' : 'Offline';
+    }
+    // window.addEventListener('load', updateOnlineStatus); // also offline online event
+});
