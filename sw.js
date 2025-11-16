@@ -5,7 +5,7 @@ const cachedFiles = [
   'index.html',
   'style.css',
   'script.js',
-  'images/logo.png'
+  'images/favicon.png'
 ];
 
 // Install event - Cache files
